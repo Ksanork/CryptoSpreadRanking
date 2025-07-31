@@ -1,0 +1,44 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.5.4'
+	id 'io.spring.dependency-management' version '1.1.7'
+	id("io.freefair.lombok") version "8.14"
+}
+
+group = 'mj.kangarecruitmenttask'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(21)
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation "com.auth0:java-jwt:4.5.0"
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation("org.mockito:mockito-inline:5.2.0")
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+	doFirst {
+		def mockitoJar = configurations.testRuntimeClasspath.files.find { it.name.contains('mockito-core') }
+		if (mockitoJar) {
+			jvmArgs += ["-javaagent:${mockitoJar.absolutePath}"]
+		}
+	}
+}
+
+
+bootRun {
+	jvmArgs = ['-Djava.util.concurrent.ForkJoinPool.common.parallelism=10']
+}

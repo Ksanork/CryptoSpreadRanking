@@ -1,0 +1,9 @@
+spring.application.name: cryptospreadranking
+
+kanga:
+  api:
+    pairs:
+      endpoint: https://public.kanga.exchange/api/market/pairs
+    orderbook:
+      endpoint: https://public.kanga.exchange/api/market/orderbook/
+      workers: 50
