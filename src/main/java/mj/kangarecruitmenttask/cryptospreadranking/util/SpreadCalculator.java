@@ -4,7 +4,7 @@ import mj.kangarecruitmenttask.cryptospreadranking.dto.MarketDataDto;
 import mj.kangarecruitmenttask.cryptospreadranking.dto.OrderBookDto;
 import mj.kangarecruitmenttask.cryptospreadranking.dto.OrderBookEntryDto;
 import mj.kangarecruitmenttask.cryptospreadranking.model.SpreadData;
-import mj.kangarecruitmenttask.cryptospreadranking.model.StaticContent;
+import mj.kangarecruitmenttask.cryptospreadranking.config.StaticContent;
 
 import java.util.*;
 

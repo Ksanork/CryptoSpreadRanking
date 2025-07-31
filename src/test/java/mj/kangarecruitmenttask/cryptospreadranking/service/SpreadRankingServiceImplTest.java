@@ -7,7 +7,7 @@ import mj.kangarecruitmenttask.cryptospreadranking.dto.MarketPairDto;
 import mj.kangarecruitmenttask.cryptospreadranking.dto.OrderBookDto;
 import mj.kangarecruitmenttask.cryptospreadranking.dto.RankingDto;
 import mj.kangarecruitmenttask.cryptospreadranking.exception.MarketApiException;
-import mj.kangarecruitmenttask.cryptospreadranking.model.StaticContent;
+import mj.kangarecruitmenttask.cryptospreadranking.config.StaticContent;
 import mj.kangarecruitmenttask.cryptospreadranking.service.impl.SpreadRankingServiceImpl;
 import mj.kangarecruitmenttask.cryptospreadranking.util.SpreadCalculator;
 import org.junit.jupiter.api.Test;

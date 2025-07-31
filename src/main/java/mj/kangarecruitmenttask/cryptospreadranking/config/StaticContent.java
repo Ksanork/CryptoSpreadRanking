@@ -1,4 +1,4 @@
-package mj.kangarecruitmenttask.cryptospreadranking.model;
+package mj.kangarecruitmenttask.cryptospreadranking.config;
 
 public class StaticContent {
     public static final String SPREAD_GROUP_1 = "group1";

@@ -5,7 +5,7 @@ import lombok.Setter;
 import mj.kangarecruitmenttask.cryptospreadranking.api.MarketApi;
 import mj.kangarecruitmenttask.cryptospreadranking.dto.*;
 import mj.kangarecruitmenttask.cryptospreadranking.exception.MarketApiException;
-import mj.kangarecruitmenttask.cryptospreadranking.model.StaticContent;
+import mj.kangarecruitmenttask.cryptospreadranking.config.StaticContent;
 import mj.kangarecruitmenttask.cryptospreadranking.service.SpreadRankingService;
 import mj.kangarecruitmenttask.cryptospreadranking.util.SpreadCalculator;
 import mj.kangarecruitmenttask.cryptospreadranking.util.TimestampUtil;

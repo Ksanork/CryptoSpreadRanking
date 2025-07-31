@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import mj.kangarecruitmenttask.cryptospreadranking.dto.MarketDataDto;
 import mj.kangarecruitmenttask.cryptospreadranking.dto.OrderBookDto;
-import mj.kangarecruitmenttask.cryptospreadranking.model.StaticContent;
+import mj.kangarecruitmenttask.cryptospreadranking.config.StaticContent;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
