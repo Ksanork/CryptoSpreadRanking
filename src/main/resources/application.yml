@@ -7,3 +7,14 @@ kanga:
     orderbook:
       endpoint: https://public.kanga.exchange/api/market/orderbook/
       workers: 50
+
+spring:
+  data:
+    redis:
+      host: ${SPRING_REDIS_HOST:redis}
+      port: ${SPRING_REDIS_PORT:6379}
+      timeout: 2000
+
+cache:
+  available-pairs-ttl: 3600
+  orderbook-ttl: 60
