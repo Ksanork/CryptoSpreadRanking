@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: crypto-spread-ranking-sa
+  namespace: crypto-spread-ranking
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: crypto-spread-ranking-role
+  namespace: crypto-spread-ranking
+rules:
+- apiGroups: [""]
+  resources: ["pods", "services", "endpoints"]
+  verbs: ["get", "list", "watch"]
+- apiGroups: ["apps"]
+  resources: ["deployments", "replicasets"]
+  verbs: ["get", "list", "watch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: crypto-spread-ranking-rolebinding
+  namespace: crypto-spread-ranking
+subjects:
+- kind: ServiceAccount
+  name: crypto-spread-ranking-sa
+  namespace: crypto-spread-ranking
+roleRef:
+  kind: Role
+  name: crypto-spread-ranking-role
+  apiGroup: rbac.authorization.k8s.io

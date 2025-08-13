@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-specific-config
+  namespace: crypto-spread-ranking
+data:
+  JAVA_OPTS: "-Xms256m -Xmx512m -XX:+UseG1GC"
+  SPRING_PROFILES_ACTIVE: "production"
+  SERVER_PORT: "8080"

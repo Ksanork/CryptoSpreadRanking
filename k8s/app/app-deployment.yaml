@@ -1,0 +1,83 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: crypto-spread-ranking
+  namespace: crypto-spread-ranking
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: crypto-spread-ranking
+  template:
+    metadata:
+      labels:
+        app: crypto-spread-ranking
+    spec:
+      containers:
+      - name: app
+        image: crypto-spread-ranking:latest
+        ports:
+        - containerPort: 8080
+          name: http
+        env:
+        - name: SPRING_REDIS_HOST
+          value: "redis-service"
+        - name: SPRING_REDIS_PORT
+          value: "6379"
+        - name: JAVA_OPTS
+          valueFrom:
+            configMapKeyRef:
+              name: app-specific-config
+              key: JAVA_OPTS
+        - name: SPRING_PROFILES_ACTIVE
+          valueFrom:
+            configMapKeyRef:
+              name: app-specific-config
+              key: SPRING_PROFILES_ACTIVE
+        volumeMounts:
+        - name: app-config
+          mountPath: /app/config
+          readOnly: true
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "200m"
+          limits:
+            memory: "1Gi"
+            cpu: "1000m"
+        livenessProbe:
+          httpGet:
+            path: /actuator/health
+            port: 8080
+          initialDelaySeconds: 60
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /actuator/health/readiness
+            port: 8080
+          initialDelaySeconds: 30
+          periodSeconds: 5
+          timeoutSeconds: 3
+          failureThreshold: 3
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 1000
+          allowPrivilegeEscalation: false
+          readOnlyRootFilesystem: false
+          capabilities:
+            drop:
+            - ALL
+      volumes:
+      - name: app-config
+        configMap:
+          name: app-config
+      securityContext:
+        fsGroup: 1000
+      restartPolicy: Always
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1

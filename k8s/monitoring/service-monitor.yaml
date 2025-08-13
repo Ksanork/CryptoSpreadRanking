@@ -1,0 +1,32 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: crypto-spread-ranking-monitor
+  namespace: crypto-spread-ranking
+  labels:
+    app: crypto-spread-ranking
+spec:
+  selector:
+    matchLabels:
+      app: crypto-spread-ranking
+  endpoints:
+  - port: http
+    path: /actuator/prometheus
+    interval: 30s
+    scrapeTimeout: 10s
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: redis-monitor
+  namespace: crypto-spread-ranking
+  labels:
+    app: redis
+spec:
+  selector:
+    matchLabels:
+      app: redis
+  endpoints:
+  - port: redis
+    interval: 30s
+    scrapeTimeout: 10s
